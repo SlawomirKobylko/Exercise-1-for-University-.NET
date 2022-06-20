@@ -1,0 +1,63 @@
+﻿<Application x:Class="Zadanie_1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Zadanie_1"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush Color="#EEE" x:Key="Niebieski"/>
+        <SolidColorBrush Color="#DDF" x:Key="Biały"/>
+        <SolidColorBrush Color="#99D" x:Key="JasnoFioletowy"/>
+        <SolidColorBrush Color="#99F" x:Key="Fioletowy"/>
+        <SolidColorBrush Color="#FF008B8B" x:Key="Cyan"/>
+        <Style 
+            TargetType="Label"
+            x:Key="Style1"
+             BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="TextBlock.Foreground" Value="#900"/>
+        </Style>
+        <Style TargetType="Button"
+               x:Key="Style2"
+               BasedOn="{StaticResource {x:Type Button}}">
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource Niebieski}"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="{x:Type Button}"
+               x:Key="Style3">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="{StaticResource Biały}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource JasnoFioletowy}"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsPressed" Value="False" />
+                        <Condition Property="IsMouseOver" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="{StaticResource Cyan}" />
+                </MultiTrigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Button.Background" Value="{StaticResource Fioletowy}" />
+                    <Setter Property="Button.Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Black" Direction="320" ShadowDepth="0" BlurRadius="0" Opacity="0" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+    </Application.Resources>
+</Application>
